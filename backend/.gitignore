@@ -1,0 +1,85 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+base_datos_usuarios.xlsx
+base_biomedicos*.csv
+base_datos_biomedicos_*.csv
+
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+biometricapi_env/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+.staticfiles_cache/
+base_datos_limpios.csv
+base_datos_usuarios.csv
+
+# Environments
+.env
+.env.*
+!.env.example
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+base_datos_limpia.csv
+*_limpio.csv
+
+biometric_db_utf8.sql
+biometric_db.sql
+biometric_db_docker_backup_*.sql
+biometric_empresa_antes.sql
+
+# Docker
+docker-compose.override.yml
+
+# Misc
+*.pid
+.mypy_cache/
+.ruff_cache/
+
+# Claude Code local artifacts
+.agents/
+.claude/
+skills-lock.json
+
+biometric_db.sql
