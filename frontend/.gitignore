@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Env: solo se versiona .env.example. Vite empaqueta cualquier VITE_* al
+# bundle público, así que estos archivos son el lugar donde alguien podría
+# terminar poniendo algo sensible sin querer.
+.env
+.env.*
+!.env.example
+
+base_datos_biomedicos_limpio.*.csv
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+/.claude
+DOCUMENTACION.md
