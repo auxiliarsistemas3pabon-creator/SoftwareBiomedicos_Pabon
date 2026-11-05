@@ -1,0 +1,11 @@
+# Normaliza finales de línea para que Git no aplique CRLF en checkouts de
+# Windows a archivos que se ejecutan tal cual dentro de contenedores Linux
+# (ej. docker/entrypoint.sh: un shebang "#!/usr/bin/env bash\r" no arranca).
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.svg text eol=lf
