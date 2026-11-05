@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #d71920;
+  --color-primary-dark: #b2141a;
+  --color-primary-darker: #7a0d12;
+  --color-secondary: #111827;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Misma familia que el resto de la UI: códigos/placas no cambian de tipo. */
+  --font-mono: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --default-font-family: var(--font-sans);
+}
+
+:root {
+  --bg: #ffffff;
+  --bg-muted: #f9fafb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --text-muted: #6b7280;
+}
+
+.dark {
+  --bg: #0b0f17;
+  --bg-muted: #111827;
+  --surface: #131a26;
+  --border: #1f2937;
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+/* Los formularios marcan los campos inválidos con el prop `error` de <Input>.
+   Desactivamos el estilo nativo del navegador para que no compita: */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  button,
+  input,
+  select,
+  textarea,
+  optgroup,
+  option {
+    font-family: inherit;
+  }
+
+  svg text,
+  .recharts-wrapper,
+  .recharts-text,
+  .recharts-legend-item-text,
+  .recharts-tooltip-wrapper,
+  .recharts-default-tooltip,
+  .recharts-tooltip-item,
+  .recharts-tooltip-label {
+    font-family: var(--font-sans) !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Flechas (spinner) de los <input type="number"> — se quitan en todos los navegadores. */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Borde/resplandor rojo nativo de validación (sobre todo Firefox: `:-moz-ui-invalid`). */
+  input:invalid,
+  textarea:invalid,
+  select:invalid {
+    box-shadow: none;
+  }
+  input:-moz-ui-invalid,
+  textarea:-moz-ui-invalid,
+  select:-moz-ui-invalid {
+    box-shadow: none;
+    border-color: var(--border);
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  /* Cuerpo del panel: 14px. Títulos 24px, secciones 16px, meta 12px. */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .bg-app {
+    background-color: var(--bg);
+  }
+  .bg-app-muted {
+    background-color: var(--bg-muted);
+  }
+  .bg-surface {
+    background-color: var(--surface);
+  }
+  .text-app {
+    color: var(--text);
+  }
+  .text-app-muted {
+    color: var(--text-muted);
+  }
+  .border-app {
+    border-color: var(--border);
+  }
+}
+
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast-enter {
+  animation: toast-enter 180ms ease-out;
+}
