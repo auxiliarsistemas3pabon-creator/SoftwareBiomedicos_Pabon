@@ -1,0 +1,6 @@
+-r base.txt
+
+# sentry-sdk ya viene fijado en base.txt (requerido en todos los entornos
+# porque config/settings/base.py lo importa condicionalmente). No volver a
+# pinearlo aquí con una versión distinta: eso genera un conflicto de
+# resolución de dependencias y `pip install -r requirements/prod.txt` falla.
