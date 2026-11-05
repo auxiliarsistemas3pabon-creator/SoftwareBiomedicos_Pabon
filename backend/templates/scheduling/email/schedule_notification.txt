@@ -1,0 +1,20 @@
+Hola,
+
+Se ha programado un mantenimiento para el siguiente equipo:
+
+  Sede:           {{ branch.name }} ({{ branch.city }})
+  Equipo:         {{ equipment.name }}
+  Código:         {{ equipment.asset_tag }}
+  Marca/Modelo:   {{ equipment.brand }} {{ equipment.model }}
+  Tipo:           {{ schedule.get_kind_display }}
+  Fecha solicitud:{{ schedule.requested_date|date:"d/m/Y" }}
+  Fecha programada:{{ schedule.scheduled_date|date:"d/m/Y"|default:"Por programar" }}
+{% if schedule.assigned_engineer %}  Ingeniero:      {{ schedule.assigned_engineer.first_name }} {{ schedule.assigned_engineer.last_name }} ({{ schedule.assigned_engineer.email }})
+{% endif %}{% if schedule.assigned_technician %}  Técnico:        {{ schedule.assigned_technician.first_name }} {{ schedule.assigned_technician.last_name }} ({{ schedule.assigned_technician.email }})
+{% endif %}
+{% if schedule.notes %}Notas:
+{{ schedule.notes }}{% endif %}
+
+Por favor confirme la asignación con el equipo de mantenimiento.
+
+— Biometric API

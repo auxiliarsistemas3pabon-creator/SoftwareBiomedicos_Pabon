@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<body style="font-family:sans-serif">
+  <h2>Mantenimiento programado</h2>
+  <table cellpadding="6">
+    <tr><th align="left">Sede</th><td>{{ branch.name }} ({{ branch.city }})</td></tr>
+    <tr><th align="left">Equipo</th><td>{{ equipment.name }}</td></tr>
+    <tr><th align="left">Código</th><td>{{ equipment.asset_tag }}</td></tr>
+    <tr><th align="left">Marca / Modelo</th><td>{{ equipment.brand }} {{ equipment.model }}</td></tr>
+    <tr><th align="left">Tipo</th><td>{{ schedule.get_kind_display }}</td></tr>
+    <tr><th align="left">Fecha de solicitud</th><td>{{ schedule.requested_date|date:"d/m/Y" }}</td></tr>
+    <tr><th align="left">Fecha programada</th><td>{{ schedule.scheduled_date|date:"d/m/Y"|default:"Por programar" }}</td></tr>
+    {% if schedule.assigned_engineer %}
+    <tr>
+      <th align="left">Ingeniero</th>
+      <td>{{ schedule.assigned_engineer.first_name }} {{ schedule.assigned_engineer.last_name }}
+        ({{ schedule.assigned_engineer.email }})</td>
+    </tr>
+    {% endif %}
+    {% if schedule.assigned_technician %}
+    <tr>
+      <th align="left">Técnico</th>
+      <td>{{ schedule.assigned_technician.first_name }} {{ schedule.assigned_technician.last_name }}
+        ({{ schedule.assigned_technician.email }})</td>
+    </tr>
+    {% endif %}
+  </table>
+  {% if schedule.notes %}
+    <p><strong>Notas:</strong></p>
+    <p>{{ schedule.notes|linebreaksbr }}</p>
+  {% endif %}
+  <p>— Biometric API</p>
+</body>
+</html>
