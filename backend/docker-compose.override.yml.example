@@ -1,0 +1,20 @@
+# Overrides de desarrollo LOCAL — no se versionan.
+#
+# `docker compose up` (sin -f) mezcla automáticamente docker-compose.yml con
+# docker-compose.override.yml si existe. El comando de producción documentado
+# en docker-compose.prod.yml pasa -f explícito y nunca incluye este archivo,
+# así que lo que pongas acá jamás llega a producción.
+#
+# Uso:
+#   cp docker-compose.override.yml.example docker-compose.override.yml
+#
+# Ejemplo típico: publicar Postgres/Redis en el host para conectarte con
+# psql, DBeaver, redis-cli, etc. mientras desarrollas.
+services:
+  db:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"

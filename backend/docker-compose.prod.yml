@@ -1,0 +1,50 @@
+# Override de producción. Se usa junto al compose base:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Qué cambia respecto a docker-compose.yml (que es para desarrollo):
+#   - Build con requirements/prod.txt en vez de dev.txt (sin pytest, debug
+#     toolbar, etc.) y DJANGO_SETTINGS_MODULE=config.settings.prod.
+#   - Anula el `command: runserver` del compose base (poniéndolo en null)
+#     para que `web` corra con el CMD por defecto del Dockerfile (gunicorn)
+#     en vez del servidor de desarrollo de Django.
+#   - flower/mailpit quedan detrás de un profile ("debug") para no
+#     levantarlos por defecto en producción.
+#
+# Lo que NO cambia (limitación de Compose, no un olvido): las listas
+# `ports`/`volumes` se combinan entre archivos, no se reemplazan, así que
+# este override no puede "quitar" nada que el compose base publique. Por eso
+# docker-compose.yml (el base) ya NO publica los puertos de Postgres/Redis al
+# host — si los necesitas en local, se agregan vía
+# docker-compose.override.yml (ver el .example), que este comando de
+# producción nunca incluye. El bind mount `.:/app` del base tampoco se puede
+# quitar desde acá; en producción se sirve el código que quedó COPY'eado en
+# la imagen durante el build, así que el bind mount es inofensivo pero
+# redundante.
+#
+# Este archivo NO incluye terminación TLS/reverse proxy (nginx, certificados,
+# etc.): eso se asume manejado fuera del compose, como ya indica el
+# comentario de frontend/.env.production.
+services:
+  web:
+    build:
+      args:
+        REQUIREMENTS: prod
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+    command: null
+
+  celery_worker:
+    build:
+      args:
+        REQUIREMENTS: prod
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+
+  flower:
+    # UI de monitoreo: no levantarla por defecto en producción.
+    profiles: ["debug"]
+
+  mailpit:
+    # Fake SMTP de desarrollo: en producción se usa el EMAIL_BACKEND real.
+    profiles: ["debug"]
