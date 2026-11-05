@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Equipos Biomédicos",
+    "slug": "equipos-biomedicos-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#d71920"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "co.clinicapabon.equiposbiomedicos"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#d71920"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "co.clinicapabon.equiposbiomedicos"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "apiBaseUrl": "https://www.biometricospabon.com/api/v1",
+      "eas": {
+        "projectId": "2d8d8945-e275-412f-9570-1352c5748bf7"
+      }
+    },
+    "owner": "biometricos"
+  }
+}
