@@ -69,6 +69,11 @@ biometric_db.sql
 biometric_db_docker_backup_*.sql
 biometric_empresa_antes.sql
 
+data/biometric_db_utf8.sql
+data/biometric_db.sql
+data/biometric_db_docker_backup_*.sql
+data/biometric_empresa_antes.sql
+
 # Docker
 docker-compose.override.yml
 
